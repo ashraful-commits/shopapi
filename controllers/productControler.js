@@ -23,6 +23,9 @@ const createProduct = (req, res) => {
     path.join(__dirname, '../db/product.json'),
     JSON.stringify(product)
   );
+  res.json({
+    message: 'Create product Successfully',
+  });
 };
 
 //============================================================> update data
@@ -43,6 +46,9 @@ const updateProduct = (req, res) => {
     path.join(__dirname, '../db/product.json'),
     JSON.stringify(product)
   );
+  res.json({
+    message: 'Create product Successfully',
+  });
 };
 //============================================================> delete product
 const deleteProduct = (req, res) => {
@@ -55,6 +61,9 @@ const deleteProduct = (req, res) => {
     path.join(__dirname, '../db/product.json'),
     JSON.stringify(afterdeletedata)
   );
+  res.json({
+    message: 'Delete Successfully',
+  });
 };
 //============================================================> single data show
 const singleProduct = (req, res) => {
