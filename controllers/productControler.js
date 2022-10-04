@@ -7,23 +7,40 @@ const getAllProduct = (req, res) => {
   const product = JSON.parse(
     fs.readFileSync(path.join(__dirname, '../db/product.json'))
   );
-  res.json(product);
+  res.status(200).json(product);
 };
 //============================================================>  create new product
 const createProduct = (req, res) => {
+  console.log(req.body);
   const product = JSON.parse(
     fs.readFileSync(path.join(__dirname, '../db/product.json'))
   );
-  const newdata = req.body;
+  const {
+    name,
+    regular_price,
+    sale_price,
+    photo,
+    catagory,
+    tags,
+    stock,
+  } = req.body;
   product.push({
     id: product.length + 1,
-    ...newdata,
+    name: name,
+    regular_price: regular_price,
+    sale_price: sale_price,
+    photo: req.file.filename,
+    catagory: catagory,
+    tags: tags,
+    stock: stock,
+    action: true,
+    status: 'upload',
   });
   fs.writeFileSync(
     path.join(__dirname, '../db/product.json'),
     JSON.stringify(product)
   );
-  res.json({
+  res.status(200).json({
     message: 'Create product Successfully',
   });
 };
@@ -46,7 +63,7 @@ const updateProduct = (req, res) => {
     path.join(__dirname, '../db/product.json'),
     JSON.stringify(product)
   );
-  res.json({
+  res.status(200).json({
     message: 'Create product Successfully',
   });
 };
@@ -61,7 +78,7 @@ const deleteProduct = (req, res) => {
     path.join(__dirname, '../db/product.json'),
     JSON.stringify(afterdeletedata)
   );
-  res.json({
+  res.status(200).json({
     message: 'Delete Successfully',
   });
 };
@@ -72,7 +89,7 @@ const singleProduct = (req, res) => {
   );
   const id = req.params.id;
   const singledata = product.find((data) => data.id == id);
-  res.json(singledata);
+  res.status(200).json(singledata);
 };
 
 //=================================================================================//>

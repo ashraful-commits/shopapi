@@ -7,6 +7,7 @@ const {
   deleteProduct,
   singleProduct,
 } = require('../controllers/productcontroler');
+const { productMulter } = require('../middlewares/imageMulter');
 
 //===================================================> init router
 
@@ -16,7 +17,7 @@ const router = express.Router();
 //=================================================> get all product
 router.get('/', getAllProduct);
 router.get('/:id', singleProduct);
-router.post('/', createProduct);
+router.post('/', productMulter, createProduct);
 router.put('/:id', updateProduct);
 router.delete('/:id', deleteProduct);
 
