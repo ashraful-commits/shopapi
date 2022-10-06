@@ -15,8 +15,16 @@ const storage = multer.diskStorage({
 
 const productMulter = multer({
   storage,
-}).single('photo');
-
+}).fields([
+  {
+    name: 'photo',
+    maxCount: 1,
+  },
+  {
+    name: 'gallary',
+    maxCount: 10,
+  },
+]);
 //===============================================================> export multer
 module.exports = {
   productMulter,

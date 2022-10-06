@@ -24,12 +24,18 @@ const createProduct = (req, res) => {
     tags,
     stock,
   } = req.body;
+
+  const gall = [];
+  req.files.gallary.forEach((element) => {
+    gall.push(element.filename);
+  });
   product.push({
     id: product.length + 1,
     name: name,
     regular_price: regular_price,
     sale_price: sale_price,
-    photo: req.file.filename,
+    photo: req.files.photo[0].filename,
+    gallary: gall,
     catagory: catagory,
     tags: tags,
     stock: stock,
